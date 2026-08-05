@@ -1,16 +1,87 @@
-# React + Vite
+# Bluecywave Connect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bluecywave Connect is a modern community platform that connects people, businesses, jobs, events, marketplaces, and opportunities within cities and local communities.
 
-Currently, two official plugins are available:
+## Vision
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+To build Africa's leading local digital ecosystem where users can:
 
-## React Compiler
+- Discover local businesses
+- Find jobs and opportunities
+- Buy and sell products
+- Join communities
+- Promote events
+- Connect with service providers
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technology Stack
 
-## Expanding the ESLint configuration
+- React 19
+- Vite
+- React Router
+- React Icons
+- Poppins Font
+- Git & GitHub
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```
+src/
+│
+├── assets
+├── components
+├── context
+├── data
+├── hooks
+├── layouts
+├── pages
+├── routes
+├── sections
+├── services
+├── styles
+└── utils
+```
+
+## Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+## Project Status
+
+Version: 0.1
+
+Current Stage:
+- Project foundation
+- Routing
+- Layout
+- Home page
+- Reusable components
+- Styling system
+
+Next Stage:
+- Business Directory
+- Community Feed
+- Jobs
+- Marketplace
+- Events
+- User Authentication
+- Dashboard
+
+---
+
+Developed by Bluecywave Technologies.

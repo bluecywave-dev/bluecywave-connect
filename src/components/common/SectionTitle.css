@@ -1,0 +1,13 @@
+.section-title{
+    margin-bottom:25px;
+}
+
+.section-title h2{
+    font-size:28px;
+    color:#111;
+}
+
+.section-title p{
+    color:#666;
+    margin-top:8px;
+}
