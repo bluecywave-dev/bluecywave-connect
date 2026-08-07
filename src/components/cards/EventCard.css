@@ -1,0 +1,55 @@
+.event-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.event-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.event-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.event-content{
+
+    padding:20px;
+
+}
+
+.event-content span{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+.event-content h3{
+
+    margin:12px 0;
+
+}
+
+.event-content p{
+
+    color:var(--gray);
+
+}

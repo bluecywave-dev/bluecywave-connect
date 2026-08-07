@@ -1,13 +1,17 @@
 import "./CategoryCard.css";
 
-function CategoryCard({ icon, title }) {
+function CategoryCard({ icon, title, total }) {
   return (
     <div className="category-card">
-      <div className="icon">
+
+      <div className="category-icon">
         {icon}
       </div>
 
       <h3>{title}</h3>
+
+      <p>{total}</p>
+
     </div>
   );
 }

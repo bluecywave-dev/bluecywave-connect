@@ -1,37 +1,102 @@
 import "./Home.css";
 
-import Button from "../../components/common/Button";
+import { useState } from "react";
+
+import Hero from "../../sections/home/Hero/Hero";
+import Categories from "../../sections/home/Categories/Categories";
+import FeaturedBusinesses from "../../sections/home/FeaturedBusinesses/FeaturedBusinesses";
+import FeaturedJobs from "../../sections/home/FeaturedJobs/FeaturedJobs";
+import Events from "../../sections/home/Events/Events";
+
+import Checkbox from "../../components/common/Checkbox/Checkbox";
+import AuthCard from "../../components/auth/AuthCard";
+import AuthHeader from "../../components/auth/AuthHeader";
+import Badge from "../../components/common/Badge/Badge";
+import Avatar from "../../components/common/Avatar/Avatar";
 
 function Home() {
+  const [agree, setAgree] = useState(false);
+
   return (
-    <div className="home">
+    <>
 
-      <section className="hero">
+      <Hero />
 
-        <h1>Bluecywave Connect</h1>
+      <AuthCard>
 
-        <p>
-          Discover businesses, jobs, events, marketplaces,
-          opportunities and communities around you—
-          all in one platform.
-        </p>
+        <AuthHeader
+          title="Create Account"
+          subtitle="Join Bluecywave Connect today."
+        />
 
-        <div className="hero-buttons">
+        <Checkbox
+          label="I agree to the Terms & Conditions"
+          checked={agree}
+          onChange={(e) => setAgree(e.target.checked)}
+        />
 
-          <Button
-            text="Explore Community"
-          />
+      </AuthCard>
 
-          <Button
-            text="Find Opportunities"
-            variant="secondary"
-          />
+      <div
+  style={{
+    display: "flex",
+    gap: "10px",
+    justifyContent: "center",
+    margin: "30px 0",
+    flexWrap: "wrap",
+  }}
+>
+  <Badge>Featured</Badge>
 
-        </div>
+  <Badge variant="success">
+    Verified
+  </Badge>
 
-      </section>
+  <Badge variant="warning">
+    Coming Soon
+  </Badge>
 
-    </div>
+  <Badge variant="danger">
+    Closed
+  </Badge>
+
+  <Badge variant="dark">
+    Premium
+  </Badge>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
+    margin: "40px 0",
+    alignItems: "center",
+    flexWrap: "wrap",
+  }}
+>
+  <Avatar name="Wisdom" />
+
+  <Avatar
+    name="Bluecywave"
+    size="large"
+  />
+
+  <Avatar
+    name="Developer"
+    size="small"
+  />
+</div>
+
+      <Categories />
+
+      <FeaturedBusinesses />
+
+      <FeaturedJobs />
+
+      <Events />
+
+    </>
   );
 }
 

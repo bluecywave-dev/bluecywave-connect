@@ -1,0 +1,9 @@
+.section{
+    padding:100px 20px;
+}
+
+.container{
+    width:100%;
+    max-width:var(--container);
+    margin:auto;
+}

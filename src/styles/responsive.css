@@ -1,0 +1,28 @@
+@media(max-width:992px){
+
+    .container{
+        width:92%;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .flex-between{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .section{
+        padding:60px 0;
+    }
+
+}

@@ -1,25 +1,67 @@
 .business-card{
+
     background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
 }
 
-.business-card h3{
-    margin-bottom:10px;
+.business-card:hover{
+
+    transform:translateY(-8px);
+
 }
 
-.business-card p{
-    color:#666;
-    margin-bottom:15px;
-}
+.business-card img{
 
-.business-card button{
     width:100%;
-    padding:12px;
-    background:#0B72FF;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.business-content{
+
+    padding:20px;
+
+}
+
+.business-content h3{
+
+    margin-bottom:10px;
+
+}
+
+.business-content p{
+
+    color:var(--gray);
+
+    margin-bottom:10px;
+
+}
+
+.business-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:20px 0;
+
+}
+
+.verified{
+
+    color:green;
+
+    font-weight:600;
+
 }

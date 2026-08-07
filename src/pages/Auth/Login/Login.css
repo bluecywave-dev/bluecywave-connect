@@ -1,0 +1,35 @@
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#0B5ED7,#0A2540);
+
+    padding:30px;
+
+}
+
+.login-links{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+.login-links a{
+
+    color:var(--primary);
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
