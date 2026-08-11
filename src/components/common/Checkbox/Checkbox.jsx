@@ -2,13 +2,12 @@ import "./Checkbox.css";
 
 function Checkbox({
   label,
-  checked,
+  checked = false,
   onChange,
   name,
 }) {
   return (
     <label className="checkbox">
-
       <input
         type="checkbox"
         name={name}
@@ -21,7 +20,6 @@ function Checkbox({
       <span className="checkbox-label">
         {label}
       </span>
-
     </label>
   );
 }

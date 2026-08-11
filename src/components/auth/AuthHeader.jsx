@@ -3,7 +3,9 @@ import "./AuthHeader.css";
 function AuthHeader({ title, subtitle }) {
   return (
     <div className="auth-header">
-      <h1>Bluecywave Connect</h1>
+      <div className="auth-brand">
+        Bluecywave Connect
+      </div>
 
       <h2>{title}</h2>
 

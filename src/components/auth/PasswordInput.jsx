@@ -4,33 +4,44 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./PasswordInput.css";
 
 function PasswordInput({
-    placeholder,
+  label,
+  name,
+  placeholder,
+  value = "",
+  onChange,
+  required = false,
 }) {
+  const [show, setShow] = useState(false);
 
-    const [show,setShow] = useState(false);
+  return (
+    <div className="password-input-group">
+      {label && (
+        <label htmlFor={name}>
+          {label}
+        </label>
+      )}
 
-    return (
+      <div className="password-input">
+        <input
+          id={name}
+          name={name}
+          type={show ? "text" : "password"}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          required={required}
+        />
 
-        <div className="password-input">
-
-            <input
-                type={show ? "text" : "password"}
-                placeholder={placeholder}
-            />
-
-            <button
-                type="button"
-                onClick={()=>setShow(!show)}
-            >
-
-                {show ? <FaEyeSlash /> : <FaEye />}
-
-            </button>
-
-        </div>
-
-    );
-
+        <button
+          type="button"
+          onClick={() => setShow((previous) => !previous)}
+          aria-label={show ? "Hide password" : "Show password"}
+        >
+          {show ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default PasswordInput;

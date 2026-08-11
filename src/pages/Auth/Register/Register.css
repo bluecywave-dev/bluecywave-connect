@@ -1,7 +1,36 @@
-.auth-page{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
+.auth-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.register-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-form button {
+  margin-top: 6px;
+}
+
+.auth-switch {
+  margin: 8px 0 0;
+  text-align: center;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.auth-switch a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
 }
