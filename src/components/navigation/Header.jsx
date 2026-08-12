@@ -1,9 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
-import "./Header.css";
-
 import {
   FaBell,
   FaSearch,
@@ -14,38 +10,25 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
+import "./Header.css";
+
 import { useAuth } from "../../contexts/AuthContext";
 import { logoutUser } from "../../firebase/auth";
 
 function Header() {
   const { currentUser, userProfile } = useAuth();
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
-  const profileMenuRef = useRef(null);
-  
-  const navigate = useNavigate();
+  const accountMenuRef = useRef(null);
 
-  const handleLogout = async () => {
-    try {
-      await logoutUser();
-
-      setMenuOpen(false);
-
-      console.log("Logout successful.");
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
-  };
-
-  // Close the profile menu when clicking outside it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        profileMenuRef.current &&
-        !profileMenuRef.current.contains(event.target)
+        accountMenuRef.current &&
+        !accountMenuRef.current.contains(event.target)
       ) {
-        setMenuOpen(false);
+        setAccountMenuOpen(false);
       }
     };
 
@@ -62,14 +45,28 @@ function Header() {
     };
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      setAccountMenuOpen(false);
+
+      await logoutUser();
+
+      console.log("Logout successful.");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <header className="header">
 
-      <div className="logo">
+      {/* Logo */}
+      <Link to="/" className="logo">
         <strong>Bluecywave</strong>
         <span> Connect</span>
-      </div>
+      </Link>
 
+      {/* Search */}
       <div className="search-box">
         <FaSearch />
 
@@ -80,6 +77,7 @@ function Header() {
         />
       </div>
 
+      {/* Header Actions */}
       <div className="header-icons">
 
         {currentUser ? (
@@ -89,101 +87,114 @@ function Header() {
               type="button"
               className="header-icon-button"
               aria-label="Notifications"
+              title="Notifications"
             >
               <FaBell />
             </button>
 
-            {/* Profile */}
+            {/* Account */}
             <div
-              className="profile-menu-wrapper"
-              ref={profileMenuRef}
+              className="account-menu-container"
+              ref={accountMenuRef}
             >
               <button
                 type="button"
-                onClick={() => navigate("/profile")}
-                aria-label="Profile"
+                className={`header-icon-button ${
+                  accountMenuOpen
+                    ? "account-button-active"
+                    : ""
+                }`}
+                onClick={() =>
+                  setAccountMenuOpen(
+                    (previous) => !previous
+                  )
+                }
+                aria-label="Account menu"
+                aria-expanded={accountMenuOpen}
+                title="Account"
               >
-                
-               <FaUserCircle />
+                <FaUserCircle />
               </button>
 
-              {menuOpen && (
-                <div className="account-menu">
+              {accountMenuOpen && (
+                <div className="account-dropdown">
 
                   {/* User information */}
-                  <div className="account-menu-header">
+                  <div className="account-dropdown-header">
 
-                    <div className="account-menu-avatar">
+                    <div className="account-dropdown-avatar">
                       <FaUserCircle />
                     </div>
 
-                    <div className="account-menu-user">
+                    <div className="account-dropdown-user">
+
                       <strong>
                         {userProfile?.fullName ||
-                          "Bluecywave User"}
+                          "User"}
                       </strong>
 
                       <span>
-                        {currentUser.email}
+                        {userProfile?.username
+                          ? `@${userProfile.username}`
+                          : currentUser.email}
                       </span>
+
                     </div>
 
                   </div>
 
-                  <div className="account-menu-divider" />
+                  <div className="account-dropdown-divider" />
 
                   {/* Dashboard */}
                   <Link
                     to="/dashboard"
-                    className="account-menu-item"
-                    onClick={() => setMenuOpen(false)}
+                    className="account-dropdown-item"
+                    onClick={() =>
+                      setAccountMenuOpen(false)
+                    }
                   >
                     <FaTachometerAlt />
 
-                    <span>
-                      Dashboard
-                    </span>
+                    <span>Dashboard</span>
                   </Link>
 
                   {/* Profile */}
                   <Link
                     to="/profile"
-                    className="account-menu-item"
-                    onClick={() => setMenuOpen(false)}
+                    className="account-dropdown-item"
+                    onClick={() =>
+                      setAccountMenuOpen(false)
+                    }
                   >
                     <FaUser />
 
-                    <span>
-                      My Profile
-                    </span>
+                    <span>Profile</span>
                   </Link>
 
                   {/* Settings */}
                   <Link
                     to="/settings"
-                    className="account-menu-item"
-                    onClick={() => setMenuOpen(false)}
+                    className="account-dropdown-item"
+                    onClick={() =>
+                      setAccountMenuOpen(false)
+                    }
                   >
                     <FaCog />
 
-                    <span>
-                      Settings
-                    </span>
+                    <span>Settings</span>
                   </Link>
 
-                  <div className="account-menu-divider" />
+                  <div className="account-dropdown-divider" />
 
                   {/* Logout */}
                   <button
                     type="button"
-                    className="account-menu-item account-menu-logout"
+                    className="account-dropdown-item account-logout"
                     onClick={handleLogout}
                   >
                     <FaSignOutAlt />
 
-                    <span>
-                      Logout
-                    </span>
+                    <span>Logout</span>
                   </button>
 
                 </div>
@@ -191,9 +202,12 @@ function Header() {
             </div>
           </>
         ) : (
-          <span className="header-guest">
-            Guest
-          </span>
+          <Link
+            to="/login"
+            className="header-guest"
+          >
+            Login
+          </Link>
         )}
 
       </div>
