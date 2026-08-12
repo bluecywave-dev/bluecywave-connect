@@ -15,15 +15,39 @@ export function AuthProvider({ children }) {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const refreshUserProfile = async (uid) => {
+    if (!uid) {
+      setUserProfile(null);
+      return null;
+    }
+
+    try {
+      const profile = await getUserProfile(uid);
+
+      setUserProfile(profile);
+
+      return profile;
+    } catch (error) {
+      console.error(
+        "Error refreshing user profile:",
+        error
+      );
+
+      setUserProfile(null);
+
+      return null;
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = observeAuthState(async (user) => {
+      setLoading(true);
+
       try {
         setCurrentUser(user);
 
         if (user) {
-          const profile = await getUserProfile(user.uid);
-
-          setUserProfile(profile);
+          await refreshUserProfile(user.uid);
         } else {
           setUserProfile(null);
         }
@@ -48,9 +72,10 @@ export function AuthProvider({ children }) {
         currentUser,
         userProfile,
         loading,
+        refreshUserProfile,
       }}
     >
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 }

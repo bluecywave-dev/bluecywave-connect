@@ -2,6 +2,7 @@ import {
   doc,
   setDoc,
   getDoc,
+  updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
 
@@ -39,4 +40,31 @@ export const getUserProfile = async (uid) => {
     id: userSnapshot.id,
     ...userSnapshot.data(),
   };
+};
+
+// Update a user's profile
+export const updateUserProfile = async ({
+  uid,
+  fullName,
+  username,
+  phone,
+  location,
+  bio,
+}) => {
+  const userRef = doc(db, "users", uid);
+
+  const profileCompleted =
+    Boolean(fullName?.trim()) &&
+    Boolean(username?.trim()) &&
+    Boolean(phone?.trim()) &&
+    Boolean(location?.trim());
+
+  await updateDoc(userRef, {
+    fullName: fullName.trim(),
+    username: username.trim(),
+    phone: phone.trim(),
+    location: location.trim(),
+    bio: bio?.trim() || "",
+    profileCompleted,
+  });
 };
